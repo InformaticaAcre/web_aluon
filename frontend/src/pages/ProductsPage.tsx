@@ -163,10 +163,10 @@ export default function ProductsPage() {
             </p>
           </div>
 
-          {productsQuery.isError && (
+          {(productsQuery.isError || isEditorial) && (
             <p className="catalog-api-note" role="status">
               Mostramos una selección editorial mientras el catálogo se actualiza.
-              <button type="button" onClick={() => void productsQuery.refetch()}>Volver a cargar</button>
+              {productsQuery.isError && <button type="button" onClick={() => void productsQuery.refetch()}>Volver a cargar</button>}
             </p>
           )}
 
