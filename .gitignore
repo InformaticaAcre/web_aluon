@@ -2,6 +2,16 @@ node_modules/
 dist/
 backend/target/
 
+# Local agent and visual verification artifacts
+.atl/
+.playwright-cli/
+logs/
+output/
+tmp/
+
+# Supplied capture folder; add only captures used by the application
+frontend/img/captures/
+
 # Local env files (no secrets in git)
 .env
 portainer.env

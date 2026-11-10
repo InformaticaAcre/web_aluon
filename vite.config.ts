@@ -7,6 +7,11 @@ export default defineConfig({
   // This avoids breaking absolute URLs like `/products/...`.
   publicDir: "frontend/public",
   server: {
+    host: true,
     port: 5173,
+  },
+  preview: {
+    host: true,
+    port: 4173,
   },
 });

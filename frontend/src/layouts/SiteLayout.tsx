@@ -2,6 +2,8 @@ import { NavLink, Outlet, useLocation } from "react-router-dom";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 import CookieBanner from "../shared/ui/CookieBanner";
+import logo from "../../img/logo.png";
+import logoWhite from "../../img/logo-white.png";
 
 const primaryLinks = [
   { to: "/", label: "Inicio", end: true },
@@ -83,7 +85,7 @@ export default function SiteLayout() {
         </div>
         <div className="site-header-inner">
           <NavLink to="/" className="site-brand" aria-label="ALUON, inicio">
-            <img src="/logo.png" alt="ALUON" width="140" height="56" />
+            <img src={logo} alt="ALUON" width="140" height="56" />
             <span className="hidden border-l border-[var(--aluon-line)] pl-4 text-[.6rem] font-bold uppercase leading-[1.35] tracking-[.12em] text-[var(--aluon-ink-soft)] xl:block">Sistemas<br />de aluminio</span>
           </NavLink>
 
@@ -163,7 +165,7 @@ export default function SiteLayout() {
           </div>
           <div className="footer-intro">
             <NavLink to="/" aria-label="ALUON, inicio" className="footer-brand">
-              <img src="/logo.png" alt="" width="140" height="56" loading="lazy" />
+              <img src={logoWhite} alt="" width="140" height="56" loading="lazy" />
             </NavLink>
             <p>Precisión, materia y criterio en cada proyecto.</p>
           </div>
