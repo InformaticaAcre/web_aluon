@@ -21,6 +21,7 @@ The current frontend has a functional React shell but a generic visual language 
 - [ ] T6 — Restructure the full public website around a coherent premium information architecture and reusable visual system.
 - [ ] T7 — Rebuild the shared SiteLayout as the premium navigation and brand frame for all public routes.
 - [ ] T8 — Rework the homepage direction and standardise all homepage copy to neutral Castilian Spanish.
+- [ ] T9 — Replace the generic split hero with a material-led editorial landing composition and verify its hierarchy in-browser.
 
 ## Acceptance criteria
 - Existing routes continue to render.
@@ -54,6 +55,7 @@ The current frontend has a functional React shell but a generic visual language 
 - T8 authorized — user explicitly requested focusing on Inicio and removing Argentine/Rioplatense wording from the interface.
 - T7 complete — rebuilt the shared brand frame, responsive navigation, footer narrative, mobile drawer focus behavior, and inert background handling in `SiteLayout.tsx`; restored Material Symbols rendering in the global stylesheet.
 - T8 complete — reworked the Inicio page around a calmer editorial composition and replaced Rioplatense copy with neutral Castilian Spanish.
+- T9 in progress — the current hero still reads as a generic AI landing page because the first visual is a factory sign and the headline dominates the viewport; the next pass will lead with a real residential entrance and a tighter editorial narrative.
 
 ## Next step
 - Build and structural checks pass for this slice; T3 remains pending for a real browser/visual review and responsive interaction walkthrough.
