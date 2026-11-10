@@ -17,6 +17,7 @@ The current frontend has a functional React shell but a generic visual language 
 - [x] T2 — Refresh the shared site shell/navigation/footer and homepage experience.
 - [ ] T3 — Verify build, responsive behavior, accessibility basics, and visual regressions.
 - [x] T4 — Apply a second reference-fidelity pass from the three Marver HTML flows without copying their branding or inventing backend capabilities.
+- [ ] T5 — Rebuild the premium brand direction across the landing experience and consent layer, then verify it in a real browser.
 
 ## Acceptance criteria
 - Existing routes continue to render.
@@ -42,6 +43,8 @@ The current frontend has a functional React shell but a generic visual language 
 - T2 complete — refreshed `frontend/src/layouts/SiteLayout.tsx` and `frontend/src/pages/HomePage.tsx` while preserving existing routes, local assets, mobile drawer navigation, and API behavior.
 - T3 pending — build, structural, and browser/visual verification.
 - T4 authorized — use the three supplied Marver HTML documents as direct UX/style influence for a focused refinement pass.
+- T5 authorized — user explicitly raised the quality bar and requested a deeper premium redesign rather than another cosmetic pass.
+- T5 in progress — the user approved narrowing the next step to `HomePage.tsx`; the premium landing slice is implemented, while the cookie-consent layer remains a separate follow-up.
 
 ## Next step
 - Build and structural checks pass for this slice; T3 remains pending for a real browser/visual review and responsive interaction walkthrough.
@@ -58,3 +61,14 @@ The current frontend has a functional React shell but a generic visual language 
 - `npm run build` — passed (`tsc -p tsconfig.app.json --noEmit && vite build`); only the existing Browserslist data freshness warning was emitted.
 - `git diff --check` — passed.
 - Browser/visual spot-check — screenshots captured at `output/playwright/aluon-catalog.png` and `output/playwright/aluon-contact-mobile.png`. Review found the cookie-consent banner obscures page content in both captures; the broader responsive, keyboard, and accessibility walkthrough is incomplete. T3 remains pending until these issues and checks are resolved.
+
+## Premium redesign pass
+- Context: `PRODUCT.md` and `DESIGN.md` define the brand register and quality bar for this pass.
+- Principle: rebuild composition and narrative, not just colors, cards, or button styles.
+- HomePage slice — implemented a material-led hero, editorial project story, collection gallery, guided principles, and stronger closing CTA using existing ALUON assets.
+- Verification — `npm run build` and `git diff --check` passed; browser screenshot captured at `output/playwright/aluon-premium-pass.png`. Cookie banner overlap is visible and remains outside this narrowed slice.
+- Route: delegated direct. The bounded writer handoff is authorized; this pass changes three non-trivial frontend files and the existing recovery document, and reading the required design/code context prepares that coordinated write.
+- Authorized scope: `frontend/src/pages/HomePage.tsx`, `frontend/src/shared/ui/CookieBanner.tsx`, `frontend/src/styles.css`, and this task document only. Preserve routes, API behavior, mobile navigation, semantic HTML, focus visibility, reduced motion, and responsive behavior. Use existing local ALUON imagery and fonts only; do not add dependencies or invent quote/backend capabilities. No commit in this writer pass.
+- TDD and runner: TDD is enabled for this session per the existing task record. The root `package.json` exposes `build`, `dev`, and `preview`, but no test script; no separate test command is inferred. The available verification runner is `npm run build`.
+- Applicable checks: `npm run build`, `git diff --check`, and structural review of the changed components. Browser/responsive visual verification is intentionally deferred to the parent; T3 stays pending until that review is complete.
+- Route trigger: delegated writer route because the requested homepage, consent layer, and shared styling are coordinated, non-trivial changes; browser review is explicitly outside this writer pass.
