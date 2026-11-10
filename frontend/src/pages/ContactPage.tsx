@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useSearchParams } from "react-router-dom";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { apiFetch, HttpError } from "../shared/api/client";
@@ -18,6 +19,8 @@ type FormValues = z.infer<typeof schema>;
 
 export default function ContactPage() {
   const [serverMessage, setServerMessage] = useState<string | null>(null);
+  const [searchParams] = useSearchParams();
+  const requestedProduct = searchParams.get("producto")?.trim().slice(0, 120) ?? "";
   const projectTypes = useMemo(
     () => ["Cerramientos de Aluminio", "Ventanas y Puertas", "Fachadas Comerciales", "Pérgolas Bioclimáticas", "Otros Proyectos"],
     [],
@@ -28,6 +31,14 @@ export default function ContactPage() {
     defaultValues: { projectType: projectTypes[0], privacyAccepted: false },
     mode: "onTouched",
   });
+
+  useEffect(() => {
+    if (!requestedProduct || form.getValues("description")) return;
+    form.setValue(
+      "description",
+      `Me interesa el modelo ${requestedProduct}. Me gustaría recibir asesoramiento para mi proyecto.`,
+    );
+  }, [form, requestedProduct]);
 
   async function onSubmit(values: FormValues) {
     setServerMessage(null);
@@ -119,20 +130,29 @@ export default function ContactPage() {
             </div>
 
             {serverMessage ? (
-              <div className="mb-6 rounded-xl border border-slate-200 bg-slate-50 p-4 text-slate-800">{serverMessage}</div>
+              <div className="mb-6 rounded-xl border border-slate-200 bg-slate-50 p-4 text-slate-800" role="status">{serverMessage}</div>
+            ) : null}
+
+            {requestedProduct ? (
+              <div className="contact-product-context" role="note">
+                <span className="material-symbols-outlined" aria-hidden="true">door_front</span>
+                <p>Tu consulta es sobre <strong>{requestedProduct}</strong>. Puedes editar el mensaje sugerido antes de enviarlo.</p>
+              </div>
             ) : null}
 
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8" noValidate>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <Field label="Nombre completo" error={form.formState.errors.fullName?.message}>
+                <Field id="fullName" label="Nombre completo" error={form.formState.errors.fullName?.message}>
                   <input
+                    id="fullName"
                     className="w-full border-0 border-b-2 border-slate-200 focus:ring-0 focus:border-rose-600 py-3 px-0 bg-transparent transition-colors text-lg"
                     placeholder="Juan Pérez"
                     {...form.register("fullName")}
                   />
                 </Field>
-                <Field label="Teléfono" error={form.formState.errors.phone?.message}>
+                <Field id="phone" label="Teléfono" error={form.formState.errors.phone?.message}>
                   <input
+                    id="phone"
                     className="w-full border-0 border-b-2 border-slate-200 focus:ring-0 focus:border-rose-600 py-3 px-0 bg-transparent transition-colors text-lg"
                     autoComplete="tel"
                     placeholder="900 000 000"
@@ -143,8 +163,9 @@ export default function ContactPage() {
                 </Field>
               </div>
 
-              <Field label="Email profesional" error={form.formState.errors.email?.message}>
+              <Field id="email" label="Email profesional" error={form.formState.errors.email?.message}>
                 <input
+                  id="email"
                   className="w-full border-0 border-b-2 border-slate-200 focus:ring-0 focus:border-rose-600 py-3 px-0 bg-transparent transition-colors text-lg"
                   placeholder="email@empresa.com"
                   type="email"
@@ -152,8 +173,9 @@ export default function ContactPage() {
                 />
               </Field>
 
-              <Field label="Tipo de proyecto" error={form.formState.errors.projectType?.message}>
+              <Field id="projectType" label="Tipo de proyecto" error={form.formState.errors.projectType?.message}>
                 <select
+                  id="projectType"
                   className="w-full border-0 border-b-2 border-slate-200 focus:ring-0 focus:border-rose-600 py-3 px-0 bg-transparent transition-colors text-lg appearance-none cursor-pointer"
                   {...form.register("projectType")}
                 >
@@ -165,8 +187,9 @@ export default function ContactPage() {
                 </select>
               </Field>
 
-              <Field label="Descripción del proyecto" error={form.formState.errors.description?.message}>
+              <Field id="description" label="Descripción del proyecto" error={form.formState.errors.description?.message}>
                 <textarea
+                  id="description"
                   className="w-full border-0 border-b-2 border-slate-200 focus:ring-0 focus:border-rose-600 py-3 px-0 bg-transparent transition-colors text-lg min-h-[100px]"
                   placeholder="Detalles específicos..."
                   rows={3}
@@ -176,14 +199,15 @@ export default function ContactPage() {
 
               <div className="flex items-start gap-3 py-2">
                 <input
+                  id="privacyAccepted"
                   className="mt-1 text-rose-600 focus:ring-rose-600 border-slate-300 h-4 w-4 rounded"
                   type="checkbox"
                   {...form.register("privacyAccepted")}
                 />
                 <div>
-                  <p className="text-xs text-slate-500 leading-relaxed">
+                  <label htmlFor="privacyAccepted" className="text-xs text-slate-500 leading-relaxed">
                     Acepto la política de privacidad y el tratamiento de mis datos para fines comerciales relacionados con mi consulta.
-                  </p>
+                  </label>
                   {form.formState.errors.privacyAccepted?.message ? (
                     <p className="mt-1 text-xs text-rose-700">{form.formState.errors.privacyAccepted.message}</p>
                   ) : null}
@@ -205,10 +229,10 @@ export default function ContactPage() {
   );
 }
 
-function Field(props: { label: string; error?: string; children: React.ReactNode }) {
+function Field(props: { id: string; label: string; error?: string; children: React.ReactNode }) {
   return (
     <div className="space-y-2">
-      <label className="text-xs font-bold uppercase tracking-widest text-slate-500">{props.label}</label>
+      <label htmlFor={props.id} className="text-xs font-bold uppercase tracking-widest text-slate-500">{props.label}</label>
       {props.children}
       {props.error ? <p className="text-xs text-rose-700">{props.error}</p> : null}
     </div>

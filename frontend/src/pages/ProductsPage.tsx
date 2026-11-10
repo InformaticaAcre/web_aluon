@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 import { apiFetch } from "../shared/api/client";
 import PageHero from "../shared/ui/PageHero";
 import backgroundServices from "../../img/background_services.jpg";
@@ -20,7 +21,7 @@ export default function ProductsPage() {
   const data = q.data ?? [];
 
   return (
-    <div className="bg-slate-50 text-slate-900 overflow-x-hidden">
+    <div className="catalog-page">
       <PageHero
         backgroundSrc={backgroundServices}
         titleLine1="Catálogo de"
@@ -28,27 +29,48 @@ export default function ProductsPage() {
         subtitle="Selección de modelos y soluciones ALUON disponibles desde el catálogo."
       />
 
-      <div className="max-w-7xl mx-auto px-6 -mt-10 sm:-mt-14 lg:-mt-16 relative z-10 pb-14">
-        <header className="rounded-3xl bg-white p-8 sm:p-10 shadow-soft border border-slate-200">
-          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-950">Explorar catálogo</h2>
-          <p className="mt-2 text-slate-600 max-w-2xl">Catálogo gestionado desde el backend (PostgreSQL / Flyway).</p>
-        </header>
+      <main className="catalog-main">
+        <section className="catalog-intro" aria-labelledby="catalog-title">
+          <div>
+            <p className="catalog-eyebrow">Encontrá tu punto de partida</p>
+            <h2 id="catalog-title">Explorá las soluciones ALUON</h2>
+            <p className="catalog-lede">
+              Mirá los modelos publicados y contanos qué necesitás. Te ayudamos a definir la solución para tu espacio.
+            </p>
+          </div>
+          <ol className="journey-guide" aria-label="Cómo solicitar asesoramiento">
+            <li className="journey-step">
+              <span aria-hidden="true">01</span>
+              <div><strong>Explorá</strong><p>Compará estilos y detalles.</p></div>
+            </li>
+            <li className="journey-step">
+              <span aria-hidden="true">02</span>
+              <div><strong>Contanos</strong><p>Compartí tu idea y medidas.</p></div>
+            </li>
+            <li className="journey-step">
+              <span aria-hidden="true">03</span>
+              <div><strong>Recibí orientación</strong><p>ALUON revisa tu consulta.</p></div>
+            </li>
+          </ol>
+        </section>
 
         {q.isLoading ? (
-          <div className="mt-10 text-slate-600">Cargando productos…</div>
+          <div className="catalog-state" role="status">Cargando productos…</div>
         ) : q.isError ? (
-          <div className="mt-10 rounded-xl border border-rose-200 bg-rose-50 p-6 text-rose-800">
+          <div className="catalog-state catalog-state-error" role="alert">
             No se han podido cargar los productos. Revisa la conexión con el backend.
           </div>
         ) : data.length === 0 ? (
-          <div className="mt-10 rounded-xl border border-slate-200 bg-white p-10 text-center text-slate-600">
-            Aún no hay productos publicados.
+          <div className="catalog-state catalog-state-empty" role="status">
+            <h3>Aún no hay productos publicados.</h3>
+            <p>Si ya tenés una idea para tu espacio, podemos ayudarte a definirla.</p>
+            <Link className="button button-primary" to="/contacto">Contanos tu proyecto</Link>
           </div>
         ) : (
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {data.map((p) => (
-              <article key={p.id} className="rounded-2xl border border-slate-200 bg-white p-8 shadow-soft">
-                <div className="mb-6 overflow-hidden rounded-xl border border-slate-100 bg-slate-50 aspect-[16/9]">
+          <section className="catalog-grid" aria-label="Productos disponibles">
+            {data.map((p, index) => (
+              <article key={p.id} className="catalog-card">
+                <div className="catalog-card-image">
                   <img
                     alt={p.name}
                     className="h-full w-full object-cover object-center"
@@ -57,15 +79,26 @@ export default function ProductsPage() {
                     decoding="async"
                     sizes="(min-width: 1024px) 340px, (min-width: 768px) 45vw, 100vw"
                   />
+                  <span className="catalog-card-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
                 </div>
-                <h2 className="text-xl font-extrabold tracking-tight">{p.name}</h2>
-                <p className="mt-2 text-slate-600 leading-relaxed">{p.shortDescription}</p>
-                <p className="mt-4 text-sm text-slate-500 leading-relaxed">{p.description}</p>
+                <div className="catalog-card-content">
+                  <p className="catalog-eyebrow">Colección ALUON</p>
+                  <h3>{p.name}</h3>
+                  <p className="catalog-card-summary">{p.shortDescription}</p>
+                  <p className="catalog-card-detail">{p.description}</p>
+                  <Link className="text-link" to={`/contacto?producto=${encodeURIComponent(p.name)}`}>
+                    Consultar este modelo <span className="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+                  </Link>
+                </div>
               </article>
             ))}
-          </div>
+          </section>
         )}
-      </div>
+        <div className="catalog-footer-cta">
+          <p>¿No sabés qué modelo elegir?</p>
+          <Link className="button button-primary" to="/contacto">Hablemos de tu proyecto</Link>
+        </div>
+      </main>
     </div>
   );
 }

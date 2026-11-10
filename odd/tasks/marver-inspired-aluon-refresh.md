@@ -16,6 +16,7 @@ The current frontend has a functional React shell but a generic visual language 
 - [x] T1 — Establish a stronger ALUON visual system inspired by reference hierarchy, spacing, imagery, and CTA patterns.
 - [x] T2 — Refresh the shared site shell/navigation/footer and homepage experience.
 - [ ] T3 — Verify build, responsive behavior, accessibility basics, and visual regressions.
+- [x] T4 — Apply a second reference-fidelity pass from the three Marver HTML flows without copying their branding or inventing backend capabilities.
 
 ## Acceptance criteria
 - Existing routes continue to render.
@@ -40,6 +41,7 @@ The current frontend has a functional React shell but a generic visual language 
 - T1 complete — added warm neutral/red design tokens, editorial typography hierarchy, responsive product cards, hero, story, CTA, footer, focus states, and reduced-motion handling in `frontend/src/styles.css`.
 - T2 complete — refreshed `frontend/src/layouts/SiteLayout.tsx` and `frontend/src/pages/HomePage.tsx` while preserving existing routes, local assets, mobile drawer navigation, and API behavior.
 - T3 pending — build, structural, and browser/visual verification.
+- T4 authorized — use the three supplied Marver HTML documents as direct UX/style influence for a focused refinement pass.
 
 ## Next step
 - Build and structural checks pass for this slice; T3 remains pending for a real browser/visual review and responsive interaction walkthrough.
@@ -48,3 +50,11 @@ The current frontend has a functional React shell but a generic visual language 
 - `npm run build` — passed (`tsc -p tsconfig.app.json --noEmit && vite build`). Vite emitted only the existing Browserslist freshness warning.
 - Structural review — passed: stylesheet restored with Tailwind directives and selectors for all new shell/home classes; native links/buttons remain keyboard focusable; mobile navigation retains Escape handling, focus return, and focus containment; `prefers-reduced-motion` is covered.
 - Browser/visual review — unavailable in this pass; no browser session was run. T3 intentionally remains pending.
+
+## Second reference-fidelity pass
+- Scope: the three supplied Marver HTML references, existing ALUON homepage and shared shell; frontend only.
+- Constraint: improve hierarchy and product discovery while preserving ALUON identity, routes, and API contracts.
+- T4 complete — refreshed product discovery and quote-intent cues across `ProductsPage.tsx`, `ShopPage.tsx`, and `ContactPage.tsx`, with shared styles in `frontend/src/styles.css`.
+- `npm run build` — passed (`tsc -p tsconfig.app.json --noEmit && vite build`); only the existing Browserslist data freshness warning was emitted.
+- `git diff --check` — passed.
+- Browser/visual spot-check — screenshots captured at `output/playwright/aluon-catalog.png` and `output/playwright/aluon-contact-mobile.png`. Review found the cookie-consent banner obscures page content in both captures; the broader responsive, keyboard, and accessibility walkthrough is incomplete. T3 remains pending until these issues and checks are resolved.

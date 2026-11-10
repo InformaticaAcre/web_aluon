@@ -121,18 +121,32 @@ export default function ShopPage() {
         backgroundSrc={backgroundOnline}
         titleLine1="Venta"
         titleHighlight="Online"
-        subtitle="Flujo MVP funcional: carrito + creación de pedido (sin pago)."
+        subtitle="Prepara tu pedido y envía la solicitud. No se realiza ningún cobro en esta pantalla."
         align="left"
         overlayClassName="bg-slate-950/40"
       />
 
       <main className="pb-20 px-6 -mt-10 sm:-mt-14 lg:-mt-16 relative z-10">
         <div className="max-w-7xl mx-auto">
+          <ol className="journey-guide shop-journey" aria-label="Pasos para preparar un pedido">
+            <li className="journey-step">
+              <span aria-hidden="true">01</span>
+              <div><strong>Elige</strong><p>Añade productos al pedido.</p></div>
+            </li>
+            <li className="journey-step">
+              <span aria-hidden="true">02</span>
+              <div><strong>Completa tus datos</strong><p>Indica cómo contactarte.</p></div>
+            </li>
+            <li className="journey-step">
+              <span aria-hidden="true">03</span>
+              <div><strong>Envía la solicitud</strong><p>ALUON confirmará los detalles.</p></div>
+            </li>
+          </ol>
           <header className="rounded-3xl bg-white p-8 sm:p-10 shadow-soft border border-slate-200 flex items-end justify-between gap-6 flex-wrap">
             <div className="max-w-3xl">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-950 mb-2">Resumen de pedido</h2>
+                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-950 mb-2">Prepara tu pedido</h2>
               <p className="text-slate-600">
-                Flujo MVP funcional: carrito + creación de pedido (sin pago). UI basada en `screens/venta-online.html`.
+                Revisa los productos y cantidades antes de enviar la solicitud. El envío no implica un pago.
               </p>
             </div>
             {message ? (
@@ -232,48 +246,38 @@ export default function ShopPage() {
                   </div>
                   <div className="border-t border-slate-100 p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
                     {data.map((p) => (
-                      <div
+                      <button
                         key={p.id}
-                        role="button"
-                        tabIndex={0}
-                        className="relative text-left rounded-xl border border-slate-200 bg-white overflow-hidden p-5 hover:border-slate-300 transition cursor-pointer select-none"
+                        type="button"
+                        className="shop-product-option"
                         onClick={() => addToCart(p)}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") addToCart(p);
-                        }}
                       >
                         <img
-                          alt={p.name}
+                          alt=""
+                          aria-hidden="true"
                           className="absolute inset-0 h-full w-full object-cover object-center"
                           src={p.imageUrl ?? DEFAULT_PRODUCT_IMAGE}
                           loading="lazy"
                           decoding="async"
                           sizes="(min-width: 768px) 50vw, 100vw"
                         />
-                        <div
+                        <span
                           aria-hidden="true"
                           className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/60 to-white/30"
                         />
-                        <div className="relative z-10">
-                          <div className="flex items-start justify-between gap-4">
-                            <div className="flex items-start gap-4">
-                              <div className="font-extrabold uppercase">{p.name}</div>
-                            </div>
-                            <div className="text-sm font-extrabold text-slate-900">{formatEuro(priceForProduct(p.id))}</div>
-                          </div>
-                          <p className="mt-2 text-sm text-slate-500">{p.shortDescription}</p>
-                          <button
-                            type="button"
-                            className="mt-4 inline-flex items-center gap-2 text-sm font-extrabold uppercase tracking-widest text-slate-900 hover:text-slate-950"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              addToCart(p);
-                            }}
-                          >
+                        <span className="shop-product-option-content">
+                          <span className="flex items-start justify-between gap-4">
+                            <span className="flex items-start gap-4">
+                              <span className="font-extrabold uppercase">{p.name}</span>
+                            </span>
+                            <span className="text-sm font-extrabold text-slate-900">{formatEuro(priceForProduct(p.id))}</span>
+                          </span>
+                          <span className="mt-2 block text-sm text-slate-500">{p.shortDescription}</span>
+                          <span className="shop-product-option-action">
                             Añadir <span className="material-symbols-outlined text-[18px]">add_shopping_cart</span>
-                          </button>
-                        </div>
-                      </div>
+                          </span>
+                        </span>
+                      </button>
                     ))}
                   </div>
                 </div>
@@ -371,7 +375,7 @@ export default function ShopPage() {
                       disabled={cartDetail.items.length === 0 || form.formState.isSubmitting}
                       type="submit"
                     >
-                      {form.formState.isSubmitting ? "Procesando…" : "Pagar con seguridad"}
+                      {form.formState.isSubmitting ? "Procesando…" : "Revisar solicitud"}
                     </button>
                   </form>
 
