@@ -2,142 +2,113 @@ import { Link } from "react-router-dom";
 import backgroundHome from "../../img/background_home.jpeg";
 import backgroundProjects from "../../img/background_proyectos.png";
 
-const featuredProducts = [
+const collections = [
   {
     name: "Classic",
-    label: "Línea esencial",
-    description: "Proporciones limpias y una presencia serena para entradas que no pasan de moda.",
+    category: "Esencial",
+    description: "Una composición limpia para entradas sobrias y atemporales.",
     image: "/products/aluon-classic.jpg",
     alt: "Puerta de aluminio de líneas horizontales en una vivienda",
   },
   {
     name: "Marita",
-    label: "Línea adaptable",
-    description: "Privacidad, luz y ritmo en una solución pensada para dialogar con la arquitectura.",
+    category: "Adaptable",
+    description: "Ritmo, privacidad y luz para integrarse con la arquitectura.",
     image: "/products/aluon-marita.jpg",
     alt: "Conjunto de puerta peatonal y portón de aluminio oscuro",
   },
   {
     name: "Veneciana",
-    label: "Línea de control",
-    description: "Lamas y textura para graduar la luz, la ventilación y la intimidad del espacio.",
+    category: "Control solar",
+    description: "Lamas que regulan la luz y la intimidad sin perder presencia.",
     image: "/products/aluon-veneciana.jpg",
-    alt: "Diseño de puerta de aluminio con lamas tipo veneciana",
+    alt: "Diseño de puerta de aluminio con lamas venecianas",
   },
 ];
 
-const principles = [
-  { number: "01", title: "Materia", text: "Aluminio soldado y acabados elegidos para resistir el paso del tiempo." },
-  { number: "02", title: "Proporción", text: "Diseños que encuentran el equilibrio entre protección, luz y presencia." },
-  { number: "03", title: "Criterio", text: "Acompañamiento experto para elegir la solución adecuada a cada proyecto." },
+const projectSteps = [
+  ["01", "Descubre", "Conoce nuestras líneas, acabados y posibilidades."],
+  ["02", "Define", "Comparte las medidas, necesidades e inspiración de tu proyecto."],
+  ["03", "Resuelve", "Te acompañamos hasta encontrar una solución que encaje."],
 ];
 
 export default function HomePage() {
   return (
     <div className="bg-[var(--aluon-paper)] text-[var(--aluon-ink)]">
-      <section className="relative isolate min-h-[720px] overflow-hidden bg-[#292522] text-white lg:min-h-[calc(100vh-84px)]" aria-labelledby="home-title">
-        <img
-          className="absolute inset-0 h-full w-full object-cover object-[58%_center]"
-          src={backgroundHome}
-          alt=""
-          aria-hidden="true"
-          fetchPriority="high"
-          decoding="async"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(19,18,17,.94)_0%,rgba(19,18,17,.72)_40%,rgba(19,18,17,.16)_78%,rgba(19,18,17,.28)_100%)]" aria-hidden="true" />
-        <div className="relative mx-auto flex min-h-[720px] w-[min(100%-3rem,1240px)] items-end pb-20 pt-28 lg:min-h-[calc(100vh-84px)] lg:pb-24">
-          <div className="grid w-full items-end gap-14 lg:grid-cols-[minmax(0,1fr)_280px]">
-            <div className="max-w-[760px]">
-              <p className="mb-7 flex items-center gap-3 text-[.68rem] font-black uppercase tracking-[.22em] text-[#efc3b5]">
-                <span className="h-px w-10 bg-[#efc3b5]" aria-hidden="true" />
-                Arquitectura en aluminio
-              </p>
-              <h1 id="home-title" className="max-w-[760px] font-[var(--aluon-display)] text-[clamp(3.5rem,8vw,7.8rem)] font-black leading-[.88] tracking-[-.075em]">
-                La entrada
-                <br />
-                <span className="text-[#e7b5a6]">define el lugar.</span>
-              </h1>
-              <p className="mt-8 max-w-[44ch] text-base leading-7 text-white/75 sm:text-lg">
-                Sistemas de aluminio soldados para proyectos que buscan seguridad, proporción y una presencia arquitectónica duradera.
-              </p>
-              <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-                <Link className="button button-primary" to="/servicios">
-                  Explorar soluciones <span className="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
-                </Link>
-                <Link className="inline-flex min-h-12 items-center border-b border-white/60 px-1 text-[.73rem] font-black uppercase tracking-[.14em] text-white transition hover:border-white" to="/contacto">
-                  Hablemos de tu proyecto
-                </Link>
-              </div>
+      <section className="mx-auto grid min-h-[calc(100svh-116px)] w-full max-w-[1440px] bg-[var(--aluon-ink)] text-white lg:grid-cols-[.8fr_1.2fr]" aria-labelledby="home-title">
+        <div className="flex flex-col justify-between px-6 py-10 sm:px-12 lg:px-16 lg:py-14">
+          <div className="flex items-center justify-between text-[.65rem] font-black uppercase tracking-[.18em] text-white/55">
+            <span>ALUON / 01</span>
+            <span>Arquitectura en aluminio</span>
+          </div>
+          <div className="max-w-[570px] py-10 lg:py-0">
+            <p className="eyebrow eyebrow-light">Puertas y portones de aluminio soldado</p>
+            <h1 id="home-title" className="mt-7 max-w-[12ch] font-[var(--aluon-display)] text-[clamp(3.2rem,6vw,5.8rem)] font-black leading-[.9] tracking-[-.075em]">Una entrada con criterio.</h1>
+            <p className="mt-8 max-w-[42ch] text-base leading-7 text-white/80 sm:text-lg">Diseñamos soluciones que protegen, ordenan y dan carácter a la arquitectura que habitas.</p>
+            <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+              <Link className="button button-primary" to="/servicios">Ver colecciones <span className="material-symbols-outlined" aria-hidden="true">arrow_forward</span></Link>
+              <Link className="border-b border-white/45 pb-2 text-[.7rem] font-black uppercase tracking-[.14em] text-white/78 transition hover:border-white hover:text-white" to="/contacto">Hablar con un especialista</Link>
             </div>
-
-            <aside className="hidden border-l border-white/30 pl-7 lg:block" aria-label="Principios de ALUON">
-              <p className="text-[.65rem] font-black uppercase tracking-[.18em] text-white/55">El lenguaje ALUON</p>
-              <p className="mt-4 font-[var(--aluon-display)] text-2xl font-black leading-tight">Menos ruido.<br />Más intención.</p>
-              <p className="mt-5 text-sm leading-6 text-white/65">Diseño, fabricación y acompañamiento para que cada decisión tenga sentido.</p>
-            </aside>
+          </div>
+          <p className="max-w-[28ch] text-xs leading-5 text-white/45">Fabricación especializada para proyectos residenciales y profesionales.</p>
+        </div>
+        <div className="relative min-h-[330px] overflow-hidden lg:min-h-0">
+          <img className="absolute inset-0 h-full w-full object-cover object-center" src={backgroundHome} alt="Entrada contemporánea con solución de aluminio ALUON" fetchPriority="high" decoding="async" sizes="(min-width: 1024px) 60vw, 100vw" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--aluon-ink)]/20 via-transparent to-black/10" aria-hidden="true" />
+          <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between border-t border-white/30 bg-black/25 p-5 backdrop-blur-sm sm:p-7">
+            <div>
+              <p className="text-[.62rem] font-black uppercase tracking-[.16em] text-white/65">Colección destacada</p>
+              <p className="mt-2 font-[var(--aluon-display)] text-2xl font-black tracking-[-.04em]">Aluminio soldado</p>
+            </div>
+            <span className="text-xs font-bold text-white/65">01 / 03</span>
           </div>
         </div>
-        <a className="absolute bottom-8 right-8 hidden items-center gap-3 text-[.65rem] font-black uppercase tracking-[.16em] text-white/70 transition hover:text-white sm:flex" href="#colecciones">
-          Descubrir ALUON <span className="material-symbols-outlined text-base" aria-hidden="true">south</span>
-        </a>
       </section>
 
-      <section className="border-b border-[var(--aluon-line)] bg-[var(--aluon-white)]" aria-label="Compromiso ALUON">
-        <div className="mx-auto grid w-[min(100%-3rem,1240px)] gap-8 py-8 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-[var(--aluon-line)]">
+      <section className="border-b border-[var(--aluon-line)] bg-[var(--aluon-white)]" aria-label="La propuesta ALUON">
+        <div className="mx-auto grid w-[min(100%-3rem,1240px)] gap-8 py-10 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-[var(--aluon-line)]">
           {[
-            ["25+", "años de experiencia"],
-            ["100%", "fabricación especializada"],
-            ["01", "equipo para tu proyecto"],
-          ].map(([value, label]) => (
-            <div className="flex items-baseline gap-4 sm:px-8 first:sm:pl-0 last:sm:pr-0" key={label}>
-              <strong className="font-[var(--aluon-display)] text-3xl font-black tracking-[-.06em] text-[var(--aluon-red)]">{value}</strong>
-              <span className="text-xs font-bold uppercase tracking-[.1em] text-[var(--aluon-ink-soft)]">{label}</span>
+            ["01", "Diseño", "Proporción y presencia"],
+            ["02", "Materia", "Aluminio pensado para durar"],
+            ["03", "Acompañamiento", "Criterio en cada decisión"],
+          ].map(([number, title, text]) => (
+            <div className="grid grid-cols-[42px_1fr] gap-4 sm:px-8 first:sm:pl-0 last:sm:pr-0" key={number}>
+              <span className="font-[var(--aluon-display)] text-xl font-black text-[var(--aluon-red)]">{number}</span>
+              <div><p className="font-[var(--aluon-display)] text-xl font-black tracking-[-.04em]">{title}</p><p className="mt-1 text-sm text-[var(--aluon-ink-soft)]">{text}</p></div>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="mx-auto grid w-[min(100%-3rem,1240px)] gap-12 py-24 lg:grid-cols-[.8fr_1.2fr] lg:gap-24 lg:py-36" aria-labelledby="approach-title">
-        <div>
-          <p className="eyebrow">Una forma de hacer</p>
-          <h2 id="approach-title" className="mt-5 max-w-[12ch] font-[var(--aluon-display)] text-5xl font-black leading-[.92] tracking-[-.065em] sm:text-6xl">El detalle también protege.</h2>
-          <p className="mt-8 max-w-[38ch] text-base leading-7 text-[var(--aluon-ink-soft)]">No fabricamos elementos aislados. Diseñamos cómo se siente llegar, habitar y volver a un espacio.</p>
-          <Link className="text-link mt-9" to="/portfolio">Ver proyectos realizados <span className="material-symbols-outlined" aria-hidden="true">arrow_forward</span></Link>
+      <section className="mx-auto grid w-[min(100%-3rem,1240px)] gap-12 py-24 lg:grid-cols-[1fr_1fr] lg:gap-24 lg:py-36" aria-labelledby="story-title">
+        <div className="relative min-h-[500px] overflow-hidden bg-[var(--aluon-paper-deep)]">
+          <img className="absolute inset-0 h-full w-full object-cover" src={backgroundProjects} alt="Proyecto residencial con soluciones de aluminio ALUON" loading="lazy" decoding="async" />
+          <div className="absolute left-5 top-5 bg-[var(--aluon-white)] px-4 py-3 text-[.63rem] font-black uppercase tracking-[.16em] text-[var(--aluon-ink)]">La forma de llegar</div>
         </div>
-        <div className="relative min-h-[470px]">
-          <img className="absolute inset-0 h-[88%] w-[82%] object-cover" src={backgroundProjects} alt="Proyecto residencial con soluciones ALUON" loading="lazy" decoding="async" />
-          <div className="absolute bottom-0 right-0 w-[62%] bg-[var(--aluon-ink)] p-7 text-white sm:p-9">
-            <p className="text-[.65rem] font-black uppercase tracking-[.18em] text-[#efc3b5]">La diferencia se nota</p>
-            <p className="mt-4 font-[var(--aluon-display)] text-2xl font-black leading-tight sm:text-3xl">Cuando el diseño cumple su función.</p>
-          </div>
+        <div className="flex flex-col justify-center">
+          <p className="eyebrow">El detalle importa</p>
+          <h2 id="story-title" className="mt-6 max-w-[11ch] font-[var(--aluon-display)] text-5xl font-black leading-[.92] tracking-[-.065em] sm:text-6xl">La primera impresión también se construye.</h2>
+          <p className="mt-8 max-w-[43ch] text-base leading-7 text-[var(--aluon-ink-soft)]">Una puerta no es solo un acceso. Es el punto donde la arquitectura recibe, protege y empieza a contar quién la habita.</p>
+          <Link className="text-link mt-9" to="/portfolio">Ver proyectos ALUON <span className="material-symbols-outlined" aria-hidden="true">arrow_forward</span></Link>
         </div>
       </section>
 
-      <section id="colecciones" className="bg-[var(--aluon-ink)] py-24 text-white lg:py-32" aria-labelledby="collections-title">
+      <section className="bg-[var(--aluon-ink)] py-24 text-white lg:py-32" aria-labelledby="collections-title">
         <div className="mx-auto w-[min(100%-3rem,1240px)]">
           <div className="flex flex-col justify-between gap-7 border-b border-white/20 pb-10 lg:flex-row lg:items-end">
-            <div>
-              <p className="eyebrow eyebrow-light">Colecciones ALUON</p>
-              <h2 id="collections-title" className="mt-5 max-w-[14ch] font-[var(--aluon-display)] text-5xl font-black leading-[.92] tracking-[-.065em] sm:text-6xl">Elegí el carácter de tu entrada.</h2>
-            </div>
-            <p className="max-w-[34ch] text-sm leading-6 text-white/60">Tres maneras de empezar a imaginar tu proyecto. El resto lo definimos juntos.</p>
+            <div><p className="eyebrow eyebrow-light">Colecciones</p><h2 id="collections-title" className="mt-5 max-w-[13ch] font-[var(--aluon-display)] text-5xl font-black leading-[.92] tracking-[-.065em] sm:text-6xl">Encuentra tu forma de entrar.</h2></div>
+            <Link className="text-link text-white" to="/servicios">Explorar todo el catálogo <span className="material-symbols-outlined" aria-hidden="true">arrow_forward</span></Link>
           </div>
-          <div className="mt-12 grid gap-px bg-white/20 md:grid-cols-3">
-            {featuredProducts.map((product, index) => (
-              <article className="group bg-[var(--aluon-ink)]" key={product.name}>
-                <Link className="block" to="/servicios" aria-label={`Explorar colección ${product.name}`}>
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {collections.map((collection, index) => (
+              <article className="group" key={collection.name}>
+                <Link to="/servicios" aria-label={`Explorar la colección ${collection.name}`}>
                   <div className="relative aspect-[4/5] overflow-hidden bg-[#343331]">
-                    <img className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-105" src={product.image} alt={product.alt} loading="lazy" decoding="async" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" aria-hidden="true" />
-                    <span className="absolute left-5 top-5 text-xs font-black tracking-[.15em] text-white/70">0{index + 1}</span>
-                    <span className="absolute bottom-5 left-5 text-[.65rem] font-black uppercase tracking-[.16em] text-[#efc3b5]">{product.label}</span>
+                    <img className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-105" src={collection.image} alt={collection.alt} loading="lazy" decoding="async" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" aria-hidden="true" />
+                    <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between"><span className="text-[.65rem] font-black uppercase tracking-[.16em] text-[#efc3b5]">{collection.category}</span><span className="material-symbols-outlined text-[#efc3b5]" aria-hidden="true">north_east</span></div>
                   </div>
-                  <div className="flex items-center justify-between border-b border-white/20 py-5">
-                    <h3 className="font-[var(--aluon-display)] text-2xl font-black tracking-[-.04em]">ALUON {product.name}</h3>
-                    <span className="material-symbols-outlined text-[#efc3b5] transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" aria-hidden="true">north_east</span>
-                  </div>
-                  <p className="max-w-[32ch] py-5 text-sm leading-6 text-white/60">{product.description}</p>
+                  <div className="border-b border-white/20 py-5"><h3 className="font-[var(--aluon-display)] text-2xl font-black tracking-[-.04em]">ALUON {collection.name}</h3><p className="mt-3 max-w-[30ch] text-sm leading-6 text-white/60">{collection.description}</p></div>
                 </Link>
               </article>
             ))}
@@ -145,36 +116,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto w-[min(100%-3rem,1240px)] py-24 lg:py-36" aria-labelledby="principles-title">
-        <div className="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:gap-24">
-          <div>
-            <p className="eyebrow">Del primer boceto al último detalle</p>
-            <h2 id="principles-title" className="mt-5 max-w-[11ch] font-[var(--aluon-display)] text-5xl font-black leading-[.92] tracking-[-.065em] sm:text-6xl">Un proyecto bien acompañado.</h2>
-          </div>
+      <section className="mx-auto w-[min(100%-3rem,1240px)] py-24 lg:py-36" aria-labelledby="journey-title">
+        <div className="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-24">
+          <div><p className="eyebrow">Cómo trabajamos</p><h2 id="journey-title" className="mt-6 max-w-[11ch] font-[var(--aluon-display)] text-5xl font-black leading-[.92] tracking-[-.065em] sm:text-6xl">Una decisión bien acompañada.</h2></div>
           <ol className="border-t border-[var(--aluon-line)]">
-            {principles.map((principle) => (
-              <li className="grid gap-5 border-b border-[var(--aluon-line)] py-7 sm:grid-cols-[64px_160px_1fr] sm:items-start" key={principle.number}>
-                <span className="font-[var(--aluon-display)] text-2xl font-black text-[var(--aluon-red)]">{principle.number}</span>
-                <h3 className="font-[var(--aluon-display)] text-2xl font-black tracking-[-.04em]">{principle.title}</h3>
-                <p className="max-w-[38ch] text-sm leading-6 text-[var(--aluon-ink-soft)]">{principle.text}</p>
-              </li>
+            {projectSteps.map(([number, title, text]) => (
+              <li className="grid gap-4 border-b border-[var(--aluon-line)] py-7 sm:grid-cols-[52px_150px_1fr]" key={number}><span className="font-[var(--aluon-display)] text-xl font-black text-[var(--aluon-red)]">{number}</span><h3 className="font-[var(--aluon-display)] text-2xl font-black tracking-[-.04em]">{title}</h3><p className="max-w-[36ch] text-sm leading-6 text-[var(--aluon-ink-soft)]">{text}</p></li>
             ))}
           </ol>
         </div>
       </section>
 
-      <section className="relative isolate overflow-hidden bg-[var(--aluon-red-dark)] py-24 text-white lg:py-32" aria-labelledby="contact-title">
-        <div className="absolute inset-y-0 right-0 -z-10 w-1/2 bg-[radial-gradient(circle_at_center,rgba(239,195,181,.24),transparent_62%)]" aria-hidden="true" />
-        <div className="mx-auto flex w-[min(100%-3rem,1240px)] flex-col justify-between gap-10 lg:flex-row lg:items-end">
-          <div>
-            <p className="eyebrow eyebrow-light">Tu proyecto empieza acá</p>
-            <h2 id="contact-title" className="mt-5 max-w-[12ch] font-[var(--aluon-display)] text-5xl font-black leading-[.92] tracking-[-.065em] sm:text-7xl">Hablemos de lo que querés construir.</h2>
-          </div>
-          <div className="max-w-[31ch] lg:pb-2">
-            <p className="text-base leading-7 text-white/75">Compartí una idea, una medida o una imagen. Te ayudamos a encontrar una solución con criterio.</p>
-            <Link className="button button-light mt-8" to="/contacto">Iniciar conversación <span className="material-symbols-outlined" aria-hidden="true">arrow_forward</span></Link>
-          </div>
-        </div>
+      <section className="bg-[var(--aluon-red-dark)] px-6 py-24 text-white sm:px-12 lg:py-32" aria-labelledby="contact-title">
+        <div className="mx-auto flex w-full max-w-[1240px] flex-col justify-between gap-10 lg:flex-row lg:items-end"><div><p className="eyebrow eyebrow-light">¿Tienes un proyecto?</p><h2 id="contact-title" className="mt-6 max-w-[12ch] font-[var(--aluon-display)] text-5xl font-black leading-[.92] tracking-[-.065em] sm:text-7xl">Hablemos de tu idea.</h2></div><div className="max-w-[31ch]"><p className="text-base leading-7 text-white/75">Cuéntanos qué necesitas y te ayudaremos a encontrar la solución adecuada.</p><Link className="button button-light mt-8" to="/contacto">Contactar con ALUON <span className="material-symbols-outlined" aria-hidden="true">arrow_forward</span></Link></div></div>
       </section>
     </div>
   );

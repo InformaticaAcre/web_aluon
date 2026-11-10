@@ -20,6 +20,7 @@ The current frontend has a functional React shell but a generic visual language 
 - [ ] T5 — Rebuild the premium brand direction across the landing experience and consent layer, then verify it in a real browser.
 - [ ] T6 — Restructure the full public website around a coherent premium information architecture and reusable visual system.
 - [ ] T7 — Rebuild the shared SiteLayout as the premium navigation and brand frame for all public routes.
+- [ ] T8 — Rework the homepage direction and standardise all homepage copy to neutral Castilian Spanish.
 
 ## Acceptance criteria
 - Existing routes continue to render.
@@ -50,7 +51,9 @@ The current frontend has a functional React shell but a generic visual language 
 - T6 authorized — user clarified that the requirement is a complete restructuring of the website, not a homepage-only visual pass.
 - T6 blocked — the delegated shared-foundation writer timed out without editing source files; no full restructuring has been applied yet.
 - T7 authorized — user approved starting the restructuring with `SiteLayout.tsx` as the first single-file phase.
+- T8 authorized — user explicitly requested focusing on Inicio and removing Argentine/Rioplatense wording from the interface.
 - T7 complete — rebuilt the shared brand frame, responsive navigation, footer narrative, mobile drawer focus behavior, and inert background handling in `SiteLayout.tsx`; restored Material Symbols rendering in the global stylesheet.
+- T8 complete — reworked the Inicio page around a calmer editorial composition and replaced Rioplatense copy with neutral Castilian Spanish.
 
 ## Next step
 - Build and structural checks pass for this slice; T3 remains pending for a real browser/visual review and responsive interaction walkthrough.
@@ -79,6 +82,12 @@ The current frontend has a functional React shell but a generic visual language 
 - `git diff --check` — passed.
 - Browser screenshot — `output/playwright/aluon-shell-icons-fixed.png`; verified the new utility bar, brand lockup, navigation hierarchy, project CTA, and working icon ligatures.
 - Accessibility — focus return and inert background handling are implemented in code; a full assistive-technology walkthrough remains pending.
+
+## Homepage language and direction phase
+- `frontend/src/pages/HomePage.tsx` now uses a split material-led hero, project narrative, collections, guided journey, and closing contact section.
+- Homepage copy uses Spain Spanish: `descubre`, `define`, `encuentra`, `cuéntanos`, `necesitas`, and no `vos`, `querés`, `acá`, or `explorá` forms.
+- `npm run build` — passed; only the existing Browserslist data freshness warning remains.
+- Browser screenshot — `output/playwright/aluon-home-castilian-final2.png`; CTA is visible within the viewport and the page title/copy are legible.
 - Route: delegated direct. The bounded writer handoff is authorized; this pass changes three non-trivial frontend files and the existing recovery document, and reading the required design/code context prepares that coordinated write.
 - Authorized scope: `frontend/src/pages/HomePage.tsx`, `frontend/src/shared/ui/CookieBanner.tsx`, `frontend/src/styles.css`, and this task document only. Preserve routes, API behavior, mobile navigation, semantic HTML, focus visibility, reduced motion, and responsive behavior. Use existing local ALUON imagery and fonts only; do not add dependencies or invent quote/backend capabilities. No commit in this writer pass.
 - TDD and runner: TDD is enabled for this session per the existing task record. The root `package.json` exposes `build`, `dev`, and `preview`, but no test script; no separate test command is inferred. The available verification runner is `npm run build`.
