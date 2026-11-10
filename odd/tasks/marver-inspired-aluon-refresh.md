@@ -22,6 +22,7 @@ The current frontend has a functional React shell but a generic visual language 
 - [ ] T7 — Rebuild the shared SiteLayout as the premium navigation and brand frame for all public routes.
 - [ ] T8 — Rework the homepage direction and standardise all homepage copy to neutral Castilian Spanish.
 - [x] T9 — Replace the generic split hero with a material-led editorial landing composition and verify its hierarchy in-browser.
+- [x] T10 — Restore the requested ALUON brand image and the approved primary slogan on Inicio.
 
 ## Acceptance criteria
 - Existing routes continue to render.
@@ -56,6 +57,7 @@ The current frontend has a functional React shell but a generic visual language 
 - T7 complete — rebuilt the shared brand frame, responsive navigation, footer narrative, mobile drawer focus behavior, and inert background handling in `SiteLayout.tsx`; restored Material Symbols rendering in the global stylesheet.
 - T8 complete — reworked the Inicio page around a calmer editorial composition and replaced Rioplatense copy with neutral Castilian Spanish.
 - T9 complete — replaced the factory-sign hero with the real residential gate image, tightened the headline and CTA hierarchy, and verified the result at 1280×720 with Playwright; the screenshot is saved at `output/playwright/aluon-home-t9.png`.
+- T10 complete — restored `background_home.jpeg` as the first visual and set the primary headline to `Una entrada con criterio.` per the user's brand preference.
 
 ## Next step
 - Build and structural checks pass for this slice; T3 remains pending for a real browser/visual review and responsive interaction walkthrough.

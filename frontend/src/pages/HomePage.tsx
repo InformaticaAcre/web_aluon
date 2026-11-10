@@ -13,13 +13,13 @@ export default function HomePage() {
   return (
     <div className="bg-[var(--aluon-paper)] text-[var(--aluon-ink)]">
       <section className="relative min-h-[calc(100svh-116px)] overflow-hidden bg-[var(--aluon-ink)] text-white" aria-labelledby="home-title">
-        <img className="absolute inset-0 h-full w-full object-cover object-[58%_center] opacity-85" src={backgroundPortfolio} alt="Portón y puerta peatonal de aluminio integrados en una vivienda contemporánea" fetchPriority="high" decoding="async" sizes="100vw" />
+        <img className="absolute inset-0 h-full w-full object-cover object-[58%_center] opacity-85" src={backgroundHome} alt="Fachada de ALUON Aluminio Soldado" fetchPriority="high" decoding="async" sizes="100vw" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(22,20,18,.93)_0%,rgba(22,20,18,.76)_32%,rgba(22,20,18,.18)_72%,rgba(22,20,18,.28)_100%)]" aria-hidden="true" />
         <div className="relative mx-auto flex min-h-[calc(100svh-116px)] w-[min(100%-3rem,1240px)] flex-col justify-between py-8 sm:py-12 lg:py-14">
           <div className="flex items-center justify-between border-b border-white/20 pb-5 text-[.63rem] font-black uppercase tracking-[.18em] text-white/65"><span>ALUON / 01</span><span className="hidden sm:block">Puertas y portones de aluminio soldado</span></div>
           <div className="max-w-[620px] py-16 lg:py-20">
             <p className="eyebrow eyebrow-light">El acceso también forma parte de la arquitectura</p>
-            <h1 id="home-title" className="mt-6 max-w-[10ch] font-[var(--aluon-display)] text-[clamp(3.5rem,7vw,6.5rem)] font-black leading-[.88] tracking-[-.08em]">La entrada define la llegada.</h1>
+            <h1 id="home-title" className="mt-6 max-w-[10ch] font-[var(--aluon-display)] text-[clamp(3.5rem,7vw,6.5rem)] font-black leading-[.88] tracking-[-.08em]">Una entrada con criterio.</h1>
             <p className="mt-8 max-w-[38ch] text-base leading-7 text-white/78 sm:text-lg">Soluciones de aluminio soldado para proyectos que piden presencia, proporción y una ejecución a la altura.</p>
             <div className="mt-9 flex flex-wrap items-center gap-5"><Link className="button button-primary" to="/servicios">Explorar colecciones <span className="material-symbols-outlined" aria-hidden="true">arrow_forward</span></Link><Link className="text-link text-white" to="/portfolio">Ver proyectos <span className="material-symbols-outlined" aria-hidden="true">arrow_forward</span></Link></div>
           </div>
