@@ -1,0 +1,35 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://192.168.99.14:5433/aluon_saas_dev}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: ${APP_DB_SCHEMA:aluon_web}
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    default-schema: ${APP_DB_SCHEMA:aluon_web}
+    schemas: ${APP_DB_SCHEMA:aluon_web}
+    table: ${SPRING_FLYWAY_TABLE:flyway_schema_history_aluon_web}
+    create-schemas: true
+
+app:
+  cors:
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173,http://127.0.0.1:5173}
+  security:
+    jwt:
+      secret: ${APP_JWT_SECRET:change-me-in-env-please-change-me}
+      issuer: ${APP_JWT_ISSUER:aluon}
+      access-token-ttl-seconds: ${APP_JWT_TTL_SECONDS:3600}
+
+logging:
+  level:
+    org.springframework.security: INFO

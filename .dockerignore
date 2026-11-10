@@ -1,0 +1,11 @@
+node_modules
+dist
+.git
+.DS_Store
+backend/target
+**/.idea
+**/.vscode
+npm-debug.log*
+yarn.lock
+pnpm-lock.yaml
+
