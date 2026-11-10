@@ -120,25 +120,6 @@ export default function ProductsPage() {
 
   return (
     <div className="catalog-page">
-      <section className="catalog-hero" aria-labelledby="catalog-title">
-        <img
-          className="catalog-hero-image"
-          src="/catalogue/premium-gate.jpg"
-          alt="Acceso de aluminio ALUON integrado en un muro de piedra"
-          fetchPriority="high"
-        />
-        <div className="catalog-hero-shade" aria-hidden="true" />
-        <div className="catalog-hero-content">
-          <p className="catalog-kicker">ALUON · Aluminio soldado</p>
-          <h1 id="catalog-title">Una entrada, a tu manera.</h1>
-          <p className="catalog-hero-copy">Puertas, portones y cerramientos para proyectos de vivienda y arquitectura.</p>
-          <a className="catalog-hero-link" href="#familias">
-            Explorar modelos <span aria-hidden="true">↓</span>
-          </a>
-        </div>
-        <p className="catalog-hero-note" aria-hidden="true">Diseño · Aluminio · Proyecto</p>
-      </section>
-
       <div className="catalog-main">
         <section className="catalog-discovery" id="familias" aria-labelledby="families-title">
           <div className="catalog-heading-row">
